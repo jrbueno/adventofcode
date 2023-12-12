@@ -9,11 +9,11 @@ class SplashScreenImpl : SplashScreen {
 
         var color = Console.ForegroundColor;
         Write(0xcc00, false, "           ▄█▄ ▄▄█ ▄ ▄ ▄▄▄ ▄▄ ▄█▄  ▄▄▄ ▄█  ▄▄ ▄▄▄ ▄▄█ ▄▄▄\n           █▄█ █ █ █ █ █▄█ █ █ █   █ █ █▄ ");
-            Write(0xcc00, false, " █  █ █ █ █ █▄█\n           █ █ █▄█ ▀▄▀ █▄▄ █ █ █▄  █▄█ █   █▄ █▄█ █▄█ █▄▄  {:year 2023}\n            ");
-            Write(0xcc00, false, "\n                                                            \n                                      ");
-            Write(0xcc00, false, "                      \n                                                            \n                ");
-            Write(0xcc00, false, "                                            \n                                                       ");
-            Write(0xcc00, false, "     \n           ");
+            Write(0xcc00, false, " █  █ █ █ █ █▄█\n           █ █ █▄█ ▀▄▀ █▄▄ █ █ █▄  █▄█ █   █▄ █▄█ █▄█ █▄▄  int y = 2023;\n           ");
+            Write(0xcc00, false, " \n                                                            \n                                     ");
+            Write(0xcc00, false, "                       \n                                                            \n               ");
+            Write(0xcc00, false, "                                             \n                                                      ");
+            Write(0xcc00, false, "      \n           ");
             Write(0x333333, false, "        *                                          ");
             Write(0x666666, false, "12\n                                                            \n                 *                  ");
             Write(0x666666, false, "                          ");
