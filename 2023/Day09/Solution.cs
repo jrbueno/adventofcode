@@ -22,7 +22,6 @@ class Solution : Solver
         foreach (var line in lines)
         {
             var numbers = line.Split(" ").Select(int.Parse).ToArray();
-            // total += GetExtrapolatedValue(numbers);
             total += GetRunningTotal(numbers);
             // break;
         }
@@ -58,14 +57,13 @@ class Solution : Solver
     }
 
     public object PartTwo(string input) {
-        var lines = "0 3 6 9 12 15\n1 3 6 10 15 21\n10 13 16 21 30 45"
-        .Split("\n");
-        // var lines = input.Split("\n");
+        // var lines = "0 3 6 9 12 15\n1 3 6 10 15 21\n10 13 16 21 30 45"
+        // .Split("\n");
+        var lines = input.Split("\n");
         var total = 0L;
         foreach (var line in lines)
         {
             var numbers = line.Split(" ").Select(int.Parse).ToArray();
-            // total += GetExtrapolatedValue(numbers);
             total += GetRunningTotal(numbers.Reverse().ToArray());
             // break;
         }
