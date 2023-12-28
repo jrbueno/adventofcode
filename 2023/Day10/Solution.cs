@@ -29,7 +29,7 @@ class Solution : Solver {
         return steps / 2;
     }
 
-
+    // private bool[,] _seen;
     private readonly Point[] directions =
     [
         (0, 1),
@@ -90,7 +90,59 @@ class Solution : Solver {
         };
     }
 
-    public object PartTwo(string input) {
-        return 0;
+    public object PartTwo(string input)
+    {
+        // var data = "...........\n.S-------7.\n.|F-----7|.\n.||.....||.\n.||.....||.\n.|L-7.F-J|.\n.|..|.|..|.\n.L--J.L--J.\n...........";
+        // var data = ".F----7F7F7F7F-7....\n.|F--7||||||||FJ....\n.||.FJ||||||||L7....\nFJL7L7LJLJ||LJ.L-7..\nL--J.L7...LJS7F-7L7.\n....F-J..F7FJ|L7L7L7\n....L7.F7||L7|.L7L7|\n.....|FJLJ|FJ|F7|.LJ\n....FJL-7.||.||||...\n....L---J.LJ.LJLJ...";
+        var data = input;
+        var maze = data.Split("\n");
+        var startingPosition = maze
+            .Select((l, i) => new { Line = l, Index = i, StartIndex = l.IndexOf('S') })
+            .First(l => l.StartIndex >= 0);
+        var startingPoint = new Point(startingPosition.StartIndex, startingPosition.Index);
+        
+        var seen = new bool[maze[0].Length, maze.Length];
+        var steps = Walk(maze, startingPoint, seen);
+        var insidePipes = CountInsidePipes(maze, seen);
+        return insidePipes;
+    }
+
+    private int CountInsidePipes(string[] maze, bool[,] seen)
+    {
+        //X,Y
+        //Left:     -1 0
+        //Right:    1 0
+        //Up:       0 -1
+        //Down      0 1
+        int insideCount = 0;
+        for (int y = 0; y < maze.Length; y++)
+        {
+            for (int x = 0; x < maze[y].Length; x++)
+            {
+                if (IsInsideLoop(y, x, maze, seen))
+                {
+                    Console.Write('I');
+                    insideCount++;
+                }
+                else
+                    Console.Write(maze[y][x]);
+            }
+            Console.WriteLine();
+        }
+
+        return insideCount;
+    }
+
+    private bool IsInsideLoop(int y, int x, string[] maze, bool[,] seen)
+    {
+        if (seen[x, y]) return false;
+        var up = (0, -1);
+        var edgeCounter = 0;
+        for (var i = x - 1; i >= 0; i--)
+        {
+            if (maze[y][i] != 'S' && seen[i, y] && PipePositions(maze[y][i]).Contains(up))
+                edgeCounter++;
+        }
+        return edgeCounter % 2 != 0;
     }
 }
