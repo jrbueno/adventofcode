@@ -121,13 +121,13 @@ class Solution : Solver {
             {
                 if (IsInsideLoop(y, x, maze, seen))
                 {
-                    Console.Write('I');
+                    // Console.Write('I');
                     insideCount++;
                 }
-                else
-                    Console.Write(maze[y][x]);
+                // else
+                    // Console.Write(maze[y][x]);
             }
-            Console.WriteLine();
+            // Console.WriteLine();
         }
 
         return insideCount;
